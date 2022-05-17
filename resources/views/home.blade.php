@@ -1,6 +1,6 @@
 @extends('main_layouts.main')
 
-		@section('title', 'ActuSoft | Home')
+		@section('title', 'Actu-Soft | Home')
 		@section('content')
 			<div class="colorlib-blog">
 				<div class="container">

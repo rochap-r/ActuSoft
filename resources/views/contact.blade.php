@@ -1,5 +1,5 @@
 @extends('main_layouts.main')
-@section('title', 'ActuSoft  | Contact')
+@section('title', 'Actu-Soft  | Contact')
 @section('content')
     
 		<div class="colorlib-contact">
