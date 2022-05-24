@@ -1,7 +1,7 @@
 @extends('main_layouts.main')
 @section('title', 'Actu-Soft  | Contact')
 @section('content')
-    
+
 		<div class="colorlib-contact">
 			<div class="container">
 				<div class="row row-pb-md">
@@ -32,42 +32,45 @@
 						<h2>Message Us</h2>
 					</div>
 					<div class="col-md-6">
-						<form action="#">
+                        {{--flash message--}}
+                        <x-blog.message :status="'success'"/>
+						<form method="POST" autocomplete="off" action="{{ route('contact.store') }}">
+                            @csrf
 							<div class="row form-group">
 								<div class="col-md-6">
 									<!-- <label for="fname">First Name</label> -->
-									<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+									<x-blog.form.input name="first_name" placeholder="your firstName" value="{ {old('first_name') }}"/>
 								</div>
 								<div class="col-md-6">
 									<!-- <label for="lname">Last Name</label> -->
-									<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                    <x-blog.form.input name="last_name" placeholder="your lastName" value="{{ old('last_name') }}"/>
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<!-- <label for="email">Email</label> -->
-									<input type="text" id="email" class="form-control" placeholder="Your email address">
+                                    <x-blog.form.input type="email" name="email" placeholder="your email address" value="{{ old('email') }}"/>
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<!-- <label for="subject">Subject</label> -->
-									<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+                                    <x-blog.form.input name="subject" required='false' placeholder="your subject" value="{{ old('subject') }}"/>
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<!-- <label for="message">Message</label> -->
-									<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+                                    <x-blog.form.textarea name="message" value="{{ old('message') }}"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<input type="submit" value="Send Message" class="btn btn-primary">
 							</div>
-						</form>		
+						</form>
 					</div>
 					<div class="col-md-6">
 						<div id="map" class="colorlib-map"></div>
@@ -75,8 +78,7 @@
 				</div>
 			</div>
 		</div>
-    
+
 @endsection
 
 
-	

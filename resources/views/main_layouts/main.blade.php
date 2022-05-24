@@ -21,7 +21,7 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="{{ asset('blog_template/css/animate.css') }}">
 	<!-- Icomoon Icon Fonts-->
@@ -38,7 +38,7 @@
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="{{ asset('blog_template/css/owl.carousel.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('blog_template/css/owl.theme.default.min.css') }}">
-	
+
 	<!-- Flaticons  -->
 	<link rel="stylesheet" href="{{ asset('blog_template/fonts/flaticon/font/flaticon.css') }}">
 
@@ -56,11 +56,11 @@
 
 	</head>
 	<body>
-		
+
 
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
-			
+
 			<div class="top-menu">
 				<div class="container">
 					<div class="row">
@@ -79,7 +79,7 @@
 									</ul>
 								</li>
 								<li><a href="{{ route('about')}}">About</a></li>
-								<li><a href="{{ route('contact')}}">Contact</a></li>
+								<li><a href="{{ route('contact.create')}}">Contact</a></li>
 								@guest
 									<li class="btn-cta"><a href="{{ route('login')}}"><span>Sign in</span></a></li>
 								@endguest
@@ -87,7 +87,7 @@
 									<li class="has-dropdown">
 										<a href="#">{{ auth()->user()->name }} <span class="caret"></span></a>
 										<ul class="dropdown">
-											<li><a 
+											<li><a
 												onclick="event.preventDefault(); getElementById('nav-logout-form').submit()"
 												href="">Déconnexion</a>
 											<form id="nav-logout-form" action="{{ route('logout')}}" method="POST">
@@ -97,7 +97,7 @@
 										</ul>
 									</li>
 								@endauth
-								
+
 							</ul>
 						</div>
 					</div>
@@ -107,13 +107,13 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	
+
 			  	</ul>
 		  	</div>
 		</aside>
 
 		@yield('content')
-        
+
 		<div id="colorlib-subscribe" class="subs-img" style="background-image: url(blog_template/images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
 			<div class="container">
@@ -226,7 +226,7 @@
 							<p>
 								<small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br> 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br>
 								<small class="block">Demo blog_template/images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>, <a href="http://pexels.com/" target="_blank">Pexels</a></small>
 							</p>
 						</div>
@@ -239,7 +239,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="{{ asset('blog_template/js/jquery.min.js') }}"></script>
 	<!-- jQuery Easing -->
