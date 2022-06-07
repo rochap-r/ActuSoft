@@ -92,10 +92,11 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'info@isp-kolwezi.com',
+        'name' => 'Actu-soft Contact',
     ],
 
+    'reply_to' => ['address' => 'info@isp-kolwezi.com', 'name' => 'Actu-soft Contact'],
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

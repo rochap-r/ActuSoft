@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -22,6 +24,16 @@ class ContactController extends Controller
             'message'=>'required|min:10|max:500'
         ]);
         Contact::create($attributes);
-        return redirect()->route('contact.create')->with('success','Votre message a bien été envoyé!');
+        Mail::to('rodriguechot@gmail.com')->send(new ContactMail(
+            $attributes['first_name'],
+            $attributes['last_name'],
+            $attributes['email'],
+            $attributes['subject'],
+            $attributes['message']
+        ));
+        if (Mail::failures()) {
+            return response()->Fail('Sorry! Please try again latter');
+        }
+        return redirect()->route('contact.create')->with('success','Nous avons reçu votre message avec succès, nous vous répondrons au plus vite.');
     }
 }

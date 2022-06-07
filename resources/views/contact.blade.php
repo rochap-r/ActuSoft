@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="row row-pb-md">
 					<div class="col-md-12 animate-box">
-						<h2>Contact Information</h2>
+						<h2>Nos informations de contact</h2>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="contact-info-wrap-flex">
@@ -29,7 +29,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Message Us</h2>
+						<h2>Contactez-nous</h2>
 					</div>
 					<div class="col-md-6">
                         {{--flash message--}}
@@ -39,25 +39,25 @@
 							<div class="row form-group">
 								<div class="col-md-6">
 									<!-- <label for="fname">First Name</label> -->
-									<x-blog.form.input name="first_name" placeholder="your firstName" value="{ {old('first_name') }}"/>
+									<x-blog.form.input name="first_name" placeholder="Votre Prénom" value="{ {old('first_name') }}"/>
 								</div>
 								<div class="col-md-6">
 									<!-- <label for="lname">Last Name</label> -->
-                                    <x-blog.form.input name="last_name" placeholder="your lastName" value="{{ old('last_name') }}"/>
+                                    <x-blog.form.input name="last_name" placeholder="Votre Postnom" value="{{ old('last_name') }}"/>
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<!-- <label for="email">Email</label> -->
-                                    <x-blog.form.input type="email" name="email" placeholder="your email address" value="{{ old('email') }}"/>
+                                    <x-blog.form.input type="email" name="email" placeholder="Votre Adresse email" value="{{ old('email') }}"/>
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<!-- <label for="subject">Subject</label> -->
-                                    <x-blog.form.input name="subject" required='false' placeholder="your subject" value="{{ old('subject') }}"/>
+                                    <x-blog.form.input name="subject" required='false' placeholder="Objet du message" value="{{ old('subject') }}"/>
 								</div>
 							</div>
 
