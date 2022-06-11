@@ -13,7 +13,6 @@ Email: {{ $email }}
 Sujet: {{ $subject }}
 <br>
 <br>
-<br>
 Message: {{ $message }}
 
 @component('mail::button', ['url' => ''])
