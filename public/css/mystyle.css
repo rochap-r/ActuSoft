@@ -14,3 +14,8 @@
 .global-message.error{
     background-color: #f70606;
 }
+
+/*categorie style*/
+.categories-col .block-21 .text{
+    width:100%;
+}

@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\Image;
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,5 +65,10 @@ class User extends Authenticatable
     public function image()
     {
         return $this->morphOne(Image::class,'imageable');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }

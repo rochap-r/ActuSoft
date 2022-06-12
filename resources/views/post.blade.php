@@ -1,6 +1,6 @@
 @extends('main_layouts.main')
 
-		@section('title', 'Actu-Soft | Voici une Actualite')
+		@section('title', 'Actu-Soft | '.$post->title)
 		@section('content')
 
 

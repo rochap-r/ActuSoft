@@ -4,7 +4,7 @@
     <div class="block-24">
         <ul>
             @foreach ($categories as $categorie )
-                <li><a href="#">{{$categorie->name}} <span>{{$categorie->posts_count}}</span></a></li>
+                <li><a href="{{ route('category.show',$categorie) }}">{{$categorie->name}} <span>{{$categorie->posts_count}}</span></a></li>
             @endforeach
         </ul>
     </div>
