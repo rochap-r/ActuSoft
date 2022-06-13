@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
     /**
      * php artisan migrate:fresh --seed  recree la bd et les données avec faker
      * php artisan db:seed  cree les donnees avec faker
-     * 
+     *
      * Seed the application's database.
      *
      * @return void
      */
     public function run()
     {
-        
+
         /**
          * truncate empeche le double enregistrement d'une meme donnée
          */
@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
 
         /**generation des fausses données */
         \App\Models\Role::factory(1)->create();
+        \App\Models\Role::factory(1)->create(['name'=>"admin"]);
          $users=\App\Models\User::factory(10)->create();
 
          foreach($users as $user){
