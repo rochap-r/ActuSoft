@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\DashBoardController;
+use App\Http\Controllers\AdminControllers\TinyMceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -31,9 +33,11 @@ Route::get('/categories', [CategoryController::class,'index'])->name('categories
 Route::get('/tags/{tag:slug}', [TagController::class,'show'])->name('tag.show');
 require __DIR__.'/auth.php';
 
-
 // Admin DashBoard Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(function (){
     Route::get('/',[DashBoardController::class,'index'])->name('index');
+    Route::resource('posts',AdminPostsController::class);
+    //Route::post('posts',[AdminPostsController::class,'store'])->name('posts.store');
+    Route::post('upload_tinymce_image',[TinyMceController::class,'upload_tinymce_image'])->name('upload_tinymce_image');
 });
 

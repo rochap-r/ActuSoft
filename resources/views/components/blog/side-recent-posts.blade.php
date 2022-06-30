@@ -1,9 +1,9 @@
 @props(['recentPosts'])
 <div class="side">
-    <h3 class="sidebar-heading">Recent Post</h3>
+    <h3 class="sidebar-heading text-uppercase">Articles à la une</h3>
     @foreach ( $recentPosts as $recent_post )
         <div class="f-blog">
-            <a href="{{route('post.show',$recent_post)}}" class="blog-img" style="background-image: url({{asset('storage/'.$recent_post->image->path.'')}})">
+            <a href="{{route('post.show',$recent_post)}}" class="blog-img" style="background-image:url({{ $recent_post->image ? asset('storage/'.$recent_post->image->path.'') : 'https://via.placeholder.com/600x400?text=actu-soft.com'}}) ">
             </a>
             <div class="desc">
                 <p class="admin"><span>{{$recent_post->created_at->diffForHumans()}}</span></p>

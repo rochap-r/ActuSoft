@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('excerpt');
-            $table->text('body');
+            $table->longText('body');
 
 
             $table->unsignedBigInteger('user_id');
@@ -27,6 +27,9 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 
+
+            $table->integer('views')->default(0);
+            $table->string('status')->default('publié');
 
             $table->timestamps();
         });

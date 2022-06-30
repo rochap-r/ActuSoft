@@ -1,6 +1,6 @@
 @props(['categories'])
 <div class="side">
-    <h3 class="sidebar-heading">Categories</h3>
+    <h3 class="sidebar-heading text-uppercase">Categories</h3>
     <div class="block-24">
         <ul>
             @foreach ($categories as $categorie )

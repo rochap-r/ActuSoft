@@ -11,15 +11,15 @@
 						<div class="row row-pb-lg">
 							<div class="col-md-12 animate-box">
 								<div class="classes class-single">
-									<div class="classes-img" style="background-image: url({{asset('storage/'.$post->image->path.'')}})">
+									<div class="classes-img" style="background-image: url({{ $post->image ? asset('storage/'.$post->image->path.''): 'https://via.placeholder.com/600x400?text=actu-soft.com'}})">
 									</div>
 									<div class="desc desc2">
 										<h3><a href="#">{{$post->title}}</a></h3>
 										<p>
-											<small> Par: <span class="text-primary">{{$post->author->name}}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
-											<small >{{$post->created_at->diffForHumans()}}</small>
+                                             <small><span class="icon-user2"></span>  <span class="text-primary">{{$post->author->name}}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <small ><span class="icon-calendar"></span> {{$post->created_at->diffForHumans()}}</small>
 										</p>
-										{{$post->body}}
+										{!! $post->body !!}
 									</div>
 								</div>
 							</div>
