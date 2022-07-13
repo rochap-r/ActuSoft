@@ -1,6 +1,6 @@
 @extends('main_layouts.main')
 
-@section('title', 'Actu-Soft | Catégories| '.$category->name)
+@section('title', 'Actu-Soft | Tags| '.$tag->name)
 @section('content')
     <div class="colorlib-blog">
         <div class="container">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="lead"> Aucun Article n'est disponible pour cette catégorie!</p>
+                        <p class="lead"> Aucun Article n'est disponible pour ce tag!</p>
                     @endforelse
 
 

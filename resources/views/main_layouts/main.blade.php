@@ -77,9 +77,9 @@
 								<li class="has-dropdown">
 									<a href="{{route('categories.index')}}">Categories</a>
                                     	<ul class="dropdown">
-                                    		<li><a href="#">Programming</a></li>
-                                    		<li><a href="#">Games</a></li>
-                                    		<li><a href="#">Soft Skills</a></li>
+                                            @foreach($navbar_categories as $category)
+                                    		    <li><a href="{{ route('category.show',$category) }}">{{ $category->name }} <span class="badge badge-white">{{ $category->posts_count }}</span></a></li>
+                                            @endforeach
                                     	</ul>
 								</li>
 								<li><a href="{{ route('about')}}">About</a></li>

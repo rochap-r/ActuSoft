@@ -2,32 +2,29 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    /** php artisan vendor:publish, pour changer le style de la pagination avec bootstrap
-     * puis 16 pour choisir paginator
-     * après on configure la fonction boot ci-dessous comme c'est fait
-     */
     public function boot()
     {
         Paginator::useBootstrap();
+       /**
+        * affichage des catégories dans l'onglet sur l'accueil
+        * class View != de view d'affichage
+        * cette façon rend la var $navbar-categories visible et accessible partout sur le site
+        */
+        $categories=Category::withCount('posts')->orderBy('posts_count','DESC')->get();
+        //dd($categories);
+        View::share('navbar_categories',$categories);
     }
+
 }

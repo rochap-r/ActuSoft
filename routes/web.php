@@ -31,7 +31,7 @@ Route::post('/contact', [ContactController::class,'store'])->name('contact.store
 
 Route::get('/categories/{category:slug}', [CategoryController::class,'show'])->name('category.show');
 Route::get('/categories', [CategoryController::class,'index'])->name('categories.index');
-Route::get('/tags/{tag:slug}', [TagController::class,'show'])->name('tag.show');
+Route::get('/tags/{tag:name}', [TagController::class,'show'])->name('tag.show');
 require __DIR__.'/auth.php';
 
 // Admin DashBoard Routes
