@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,12 +45,18 @@ class DatabaseSeeder extends Seeder
         \App\Models\Role::factory(1)->create();
         \App\Models\Role::factory(1)->create(['name'=>"admin"]);
          $users=\App\Models\User::factory(10)->create();
+         \App\Models\User::factory()->create([
+             'name'=>'rodrigue',
+             'email'=>'rodriguechot@gmail.com',
+             'role_id'=>2
+         ]);
 
          foreach($users as $user){
              $user->image()->save(Image::factory()->make());
          }
 
          \App\Models\Category::factory(10)->create();
+         \App\Models\Category::factory()->create(['name'=>'sans-categorie']);
          $posts=\App\Models\Post::factory(60)->create();
          \App\Models\Comment::factory(100)->create();
          \App\Models\Tag::factory(10)->create();

@@ -6,7 +6,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Articles</div>
+                <div class="breadcrumb-title pe-3">Articles de la categorie: {{ $category->name }}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -54,8 +54,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($posts as $post)
-                                   <tr>
+                            @foreach($category->posts as $post)
+                                <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div>
@@ -92,8 +92,8 @@
                                             </form>
                                         </div>
                                     </td>
-                                    </tr>
-                                @endforeach
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

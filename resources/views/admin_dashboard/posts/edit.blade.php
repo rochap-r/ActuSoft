@@ -16,7 +16,7 @@
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Edition d'article</li>
                         </ol>
@@ -41,7 +41,7 @@
                 <div class="card-body p-4">
                     <h5 class="card-title">Edition de l'article: {{ $post->title }}</h5>
                     <hr/>
-                    <form action="{{ route('admin.posts.update',$post) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.posts.update',$post) }}" method="POST" enctype="multipart/form-data" id="post_form_{{ $post->id }}">
                         @csrf
                         @method('PATCH')
                         <div class="form-body mt-4">
@@ -114,16 +114,18 @@
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary text-uppercase">Editer l'Article</button>
-                                        <form action="{{ route('admin.posts.destroy',$post) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger text-uppercase">supprrimer l'article</button>
-                                        </form>
+                                        <div class="mb-3">
+                                            <button onclick="event.preventDefault(); document.getElementById('post_form_{{ $post->id }}').submit()" class="btn btn-primary text-uppercase">Editer l'Article</button>&nbsp&nbsp&nbsp
+                                            <button onclick="event.preventDefault(); document.getElementById('delete_form_{{ $post->id }}').submit()" class="btn btn-danger text-uppercase">supprrimer l'article</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div><!--end row-->
                         </div>
+                    </form>
+                    <form action="{{ route('admin.posts.destroy',$post) }}" method="POST" id="delete_form_{{ $post->id }}">
+                        @csrf
+                        @method('DELETE')
                     </form>
                 </div>
             </div>
@@ -148,6 +150,7 @@
                 placeholder: $(this).data('placeholder'),
                 allowClear: Boolean($(this).data('allow-clear')),
             });
+
             tinymce.init({
                 selector: '#post_content',
                 plugins: 'image autolink lists table ',
@@ -209,7 +212,9 @@
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 
             });
+
             setTimeout(()=>{ $(".general-message").fadeOut(); },5000)
         })
+
     </script>
 @endsection

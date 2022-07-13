@@ -24,7 +24,7 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
 								</li>
 								<li class="breadcrumb-item active" aria-current="page">Création</li>
 							</ol>
@@ -49,7 +49,7 @@
 				  <div class="card-body p-4">
 					  <h5 class="card-title">Ajouter un nouvel Article</h5>
 					  <hr/>
-					  <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
+					  <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data" id="post_form">
 						@csrf
                        	<div class="form-body mt-4">
 							<div class="row">
@@ -111,7 +111,7 @@
 									 	<p class="text-danger">{{ $message }}</p>
 									@enderror
 								  </div>
-								   <button type="submit" class="btn btn-primary text-uppercase">Ajouter Nouvel Article</button>
+								   <button onclick="event.preventDefault(); document.getElementById('post_form').submit()" class="btn btn-primary text-uppercase">Ajouter Nouvel Article</button>
 								 </div>
 							   </div>
 						   </div><!--end row-->
@@ -130,20 +130,21 @@
 	<script>
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
-		})
-		$('.single-select').select2({
-			theme: 'bootstrap4',
-			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-			placeholder: $(this).data('placeholder'),
-			allowClear: Boolean($(this).data('allow-clear')),
-		});
-		$('.multiple-select').select2({
-			theme: 'bootstrap4',
-			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-			placeholder: $(this).data('placeholder'),
-			allowClear: Boolean($(this).data('allow-clear')),
-		});
-		tinymce.init({
+
+            $('.single-select').select2({
+                theme: 'bootstrap4',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: Boolean($(this).data('allow-clear')),
+            });
+            $('.multiple-select').select2({
+                theme: 'bootstrap4',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: Boolean($(this).data('allow-clear')),
+            });
+
+            tinymce.init({
                 selector: '#post_content',
                 plugins: 'image autolink lists table ',
                 toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
@@ -156,26 +157,26 @@
 
                 images_upload_handler: function(blobinfo,success,failure){
                     let formData= new FormData();
-					let _token= $('input[name="_token"]').val();
-					let xhr=new XMLHttpRequest();
-					xhr.open('post',"{{ route('admin.upload_tinymce_image') }}")
-					xhr.onload=()=>{
-						if(xhr.status !== 200)
-						{
-							failure("Http Error "+xhr.status);
-							return
-						}
-						let json=JSON.parse(xhr.responseText)
-						if(! json || typeof json.location!=='string'){
-							failure("Invalid json: "+xhr.responseText);
-							return
-						}
-						success(json.location)
-					}
-					formData.append('_token',_token);
-					formData.append('file',blobinfo.blob(),blobinfo.filename());
+                    let _token= $('input[name="_token"]').val();
+                    let xhr=new XMLHttpRequest();
+                    xhr.open('post',"{{ route('admin.upload_tinymce_image') }}")
+                    xhr.onload=()=>{
+                        if(xhr.status !== 200)
+                        {
+                            failure("Http Error "+xhr.status);
+                            return
+                        }
+                        let json=JSON.parse(xhr.responseText)
+                        if(! json || typeof json.location!=='string'){
+                            failure("Invalid json: "+xhr.responseText);
+                            return
+                        }
+                        success(json.location)
+                    }
+                    formData.append('_token',_token);
+                    formData.append('file',blobinfo.blob(),blobinfo.filename());
 
-					xhr.send(formData);
+                    xhr.send(formData);
                 },
 
                 file_picker_types: 'image',
@@ -206,28 +207,30 @@
                 },
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 
-        });
+            });
 
+            // tinymce.init(
+            //     {
+            //         selector:'#post_content',
+            // 		plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+            // 		toolbar: 'a11ycheck addcomment showcomments casechange checklist  export formatpainter code image link editimage pageembed permanentpen table tableofcontents',
+            //         //plugins:'advlist autolink links image charmap print preview hr anchor pagebraek',
+            //         toolbar_mode:'floating',
+            // 		height:'500',
+            // 		tinycomments_mode: 'embedded',
+            // 		tinycomments_author: 'Author name',
+            // 		//toolbar:'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
+            // 		image_title: true,
+            // 		automatic_uploads: true,
+            // 		images_upload_handler: function(blobinfo,success,failure)
+            // 		{
+            // 			console.log(blobinfo.blob())
+            // 		}
+            //     }
+            // )
 
-        // tinymce.init(
-        //     {
-        //         selector:'#post_content',
-		// 		plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-		// 		toolbar: 'a11ycheck addcomment showcomments casechange checklist  export formatpainter code image link editimage pageembed permanentpen table tableofcontents',
-        //         //plugins:'advlist autolink links image charmap print preview hr anchor pagebraek',
-        //         toolbar_mode:'floating',
-		// 		height:'500',
-		// 		tinycomments_mode: 'embedded',
-		// 		tinycomments_author: 'Author name',
-		// 		//toolbar:'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
-		// 		image_title: true,
-		// 		automatic_uploads: true,
-		// 		images_upload_handler: function(blobinfo,success,failure)
-		// 		{
-		// 			console.log(blobinfo.blob())
-		// 		}
-        //     }
-        // )
-		setTimeout(()=>{ $(".general-message").fadeOut(); },5000)
+            setTimeout(()=>{ $(".general-message").fadeOut(); },5000)
+        })
+
 	</script>
 	@endsection

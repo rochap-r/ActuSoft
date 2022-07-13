@@ -49,7 +49,7 @@ class AdminPostsController extends Controller
                 'path'=>$path
             ]);
         }
-        return redirect()->route('admin.posts.create')->with('success','Votre Article a bien été créé!');
+        return redirect()->route('admin.posts.index')->with('success','Votre Article a bien été créé!');
 
     }
 
@@ -89,7 +89,7 @@ class AdminPostsController extends Controller
                 'path'=>$path
             ]);
         }
-        return redirect()->route('admin.posts.edit',$post)->with('success','Votre Article a bien été mis à jour!');
+        return redirect()->route('admin.posts.index',$post)->with('success','Votre Article a bien été mis à jour!');
     }
 
 

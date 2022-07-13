@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{{ asset('admin_dashboard_assets/images/favicon-32x32.png') }}" type="image/png" />
+	<link rel="icon" href="{{ asset('logo/logo.png') }}" type="image/png" />
 	<!--plugins-->
 	@yield("style")
 	<link href="{{ asset('admin_dashboard_assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/header-colors.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/myStyle.css') }}" />
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <title>actu-soft - Actualités software pour les passionés du logiciel</title>
 </head>
 
 <body>

@@ -6,13 +6,13 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Articles</div>
+                <div class="breadcrumb-title pe-3">Catégories</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Tous les Articles</li>
+                            <li class="breadcrumb-item active" aria-current="page">Toutes les Categories</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,9 +22,9 @@
                         <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-                            <a class="dropdown-item" href="javascript:;">Another action</a>
-                            <a class="dropdown-item" href="javascript:;">Something else here</a>
-                            <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+                            <a class="dropdown-item" href="{{route('admin.categories.index')}}">Voir les catégories</a>
+                            <a class="dropdown-item" href="{{route('admin.categories.create')}}">Nouvelle Catégorie</a>
+                            <div class="dropdown-divider"></div>	<a class="dropdown-item" href="{{ route('admin.index') }}">Administration</a>
                         </div>
                     </div>
                 </div>
@@ -37,65 +37,58 @@
                         <div class="position-relative">
                             <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
                         </div>
-                        <div class="ms-auto"><a href="{{route('admin.posts.create')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Créer un Article</a></div>
+                        <div class="ms-auto"><a href="{{route('admin.categories.create')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Créer une Catégorie</a></div>
                     </div>
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <thead class="table-light">
                             <tr>
-                                <th>Article#</th>
-                                <th>Titre Article</th>
-                                <th>Extrait Article</th>
-                                <th>Categorie</th>
+                                <th>Categorie#</th>
+                                <th>Nom de la categorie</th>
+                                <th>Articles Rélatifs</th>
+                                <th>Créateur</th>
                                 <th>Date de Création</th>
-                                <th>Status</th>
-                                <th>Vues</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($posts as $post)
-                                   <tr>
+                            @foreach($categories as $category)
+                                <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div>
                                                 <input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
                                             </div>
                                             <div class="ms-2">
-                                                <h6 class="mb-0 font-14">#ART-{{ $post->id }}</h6>
+                                                <h6 class="mb-0 font-14">CAT#-{{ $category->id }}</h6>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $category->name }}</td>
 
-                                    <td>{{ $post->excerpt }}</td>
-
-                                    <td>{{ $post->category->name }}</td>
-
-                                    <td>{{ $post->created_at->diffForHumans() }}</td>
+                                    <td>{{ $category->created_at->diffForHumans() }}</td>
 
                                     <td>
-                                        <div class="badge rounded-pill @if($post->status==='publié') {{ 'text-info bg-light-info' }} @elseif($post->status==='brouillon') {{ 'text-warning bg-light-warning' }} @else {{ 'text-danger bg-light-danger' }} @endif  p-2 text-uppercase px-3">
-                                            <i class='bx bxs-circle me-1'></i>
-                                            {{ $post->status }}
-                                        </div>
+                                        <a href="{{ route('admin.categories.show',$category) }}" class="btn btn-primary btn-sm"> Articles Rélatifs </a>
                                     </td>
-
-                                    <td>{{ $post->views }}</td>
+                                    <td>{{ $category->user->name }}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="{{ route('admin.posts.edit',$post) }}" class="text-warning"><i class='bx bxs-edit'></i></a>
-                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete_form_{{ $post->id }}').submit()" class="ms-3 text-danger"><i class='bx bxs-trash'></i></a>
-                                            <form action="{{ route('admin.posts.destroy',$post) }}" id="delete_form_{{ $post->id }}" method="POST">
+                                            <a href="{{ route('admin.categories.edit',$category) }}" class="text-warning"><i class='bx bxs-edit'></i></a>
+                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete_form_{{ $category->id }}').submit()" class="ms-3 text-danger"><i class='bx bxs-trash'></i></a>
+                                            <form action="{{ route('admin.categories.destroy',$category) }}" id="delete_form_{{ $category->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
                                         </div>
                                     </td>
-                                    </tr>
-                                @endforeach
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-4">
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>

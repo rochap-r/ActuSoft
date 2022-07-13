@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminControllers\AdminCategoryController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\DashBoardController;
 use App\Http\Controllers\AdminControllers\TinyMceController;
@@ -37,6 +38,7 @@ require __DIR__.'/auth.php';
 Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(function (){
     Route::get('/',[DashBoardController::class,'index'])->name('index');
     Route::resource('posts',AdminPostsController::class);
+    Route::resource('categories',AdminCategoryController::class);
     //Route::post('posts',[AdminPostsController::class,'store'])->name('posts.store');
     Route::post('upload_tinymce_image',[TinyMceController::class,'upload_tinymce_image'])->name('upload_tinymce_image');
 });
