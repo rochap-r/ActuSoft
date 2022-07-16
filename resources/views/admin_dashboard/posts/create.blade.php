@@ -5,6 +5,8 @@
 	<link href="{{ asset('admin_dashboard_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css')}}" rel="stylesheet" />
 	<link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 	<link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
+    {{-- css pour les tags--}}
+    <link href="{{ asset('admin_dashboard_assets/plugins/input-tags/css/tagsinput.css')}}" rel="stylesheet" />
 	<style>
 		.imageuploadfy{
 			border:0;
@@ -96,6 +98,11 @@
 										   </div>
 									   </div>
 								   </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Tags de l'article</label>
+                                        <input type="text" class="form-control" name="tags" data-role="tagsinput">
+                                    </div>
+
 								   <div class="mb-3">
 									   <label for="inputProductDescription" class="form-label">Image d'article</label>
 									   <input id="image-uploadify" required name="thumbnail" type="file" accept="image/*">
@@ -127,6 +134,8 @@
 	@section("script")
 	<script src="{{ asset('admin_dashboard_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js')}}"></script>
 	<script src="{{ asset('admin_dashboard_assets/plugins/select2/js/select2.min.js')}}"></script>
+    {{-- script indispensble pour les tags--}}
+    <script src="{{ asset('admin_dashboard_assets/plugins/input-tags/js/tagsinput.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
@@ -146,8 +155,8 @@
 
             tinymce.init({
                 selector: '#post_content',
-                plugins: 'image autolink lists table ',
-                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
+                plugins:'advlist autolink link image charmap print preview hr anchor pagebraek indent code autolink table lists',
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | hr charmap table',
                 toolbar_mode: 'floating',
                 tinycomments_mode: 'embedded',
                 tinycomments_author: 'Author name',

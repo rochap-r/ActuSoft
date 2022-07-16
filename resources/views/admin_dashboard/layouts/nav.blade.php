@@ -33,7 +33,8 @@
                         </li>
 
                     </ul>
-                </li><li>
+                </li>
+                <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
                             <i class='bx bxs-analyse '></i>
@@ -49,7 +50,12 @@
 
                     </ul>
                 </li>
-
+                <li>
+                    <a href="{{ route('admin.tags.index') }}" >
+                        <div class="parent-icon"><i class='bx bxs-purchase-tag'></i></div>
+                        <div class="menu-title">Tags</div>
+                    </a>
+                </li>
 
             </ul>
             <!--end navigation-->

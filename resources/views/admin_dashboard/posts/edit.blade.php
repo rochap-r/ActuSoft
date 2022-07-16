@@ -3,6 +3,8 @@
 @section("style")
     <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
+    {{-- css pour les tags--}}
+    <link href="{{ asset('admin_dashboard_assets/plugins/input-tags/css/tagsinput.css')}}" rel="stylesheet" />
     <script src="https://cdn.tiny.cloud/1/s86rdw88nimupgtqnx7gmsk8b6yqfi9bok9bftuoyvnhxykf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
 
@@ -90,6 +92,10 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
+                                            <label class="form-label">Tags de l'article</label>
+                                            <input type="text" class="form-control" value="{{ $tags }}" name="tags" data-role="tagsinput">
+                                        </div>
+                                        <div class="mb-3">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="card">
@@ -109,7 +115,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputProductDescription" class="form-label">Contenu d'article</label>
-                                            <textarea id="post_content" required class="form-control" name="body" id="inputProductDescription" rows="3">{{ old('body',str_replace('jpeg','jpg',str_replace('../../../', '/', $post->body))) }}</textarea>
+                                            <textarea id="post_content" required class="form-control" name="body" id="inputProductDescription" rows="3">{{ old('body',str_replace('jpeg','jpg',str_replace('../../', '../../../', $post->body))) }}</textarea>
                                             @error('body')
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -136,6 +142,8 @@
 
 @section("script")
     <script src="{{ asset('admin_dashboard_assets/plugins/select2/js/select2.min.js')}}"></script>
+    {{-- script indispensble pour les tags--}}
+    <script src="{{ asset('admin_dashboard_assets/plugins/input-tags/js/tagsinput.js')}}"></script>
     <script>
         $(document).ready(function () {
             $('.single-select').select2({
@@ -153,8 +161,8 @@
 
             tinymce.init({
                 selector: '#post_content',
-                plugins: 'image autolink lists table ',
-                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
+                plugins:'advlist autolink link image charmap print preview hr anchor pagebraek indent code autolink table lists',
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | hr charmap table',
                 toolbar_mode: 'floating',
                 height:'500',
                 image_title:true,

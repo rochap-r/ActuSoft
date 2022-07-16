@@ -1,6 +1,13 @@
 @extends('main_layouts.main')
 
 		@section('title', 'Actu-Soft | '.$post->title)
+        @section('custom_css')
+            <style>
+                .class-single .desc img{
+                    width:100%;
+                }
+            </style>
+        @endsection
 		@section('content')
 
 
