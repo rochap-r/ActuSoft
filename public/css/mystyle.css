@@ -1,11 +1,11 @@
 .global-message{
     position: fixed;
-    bottom: 1px;
-    right: 10px;
+    bottom: 285px;
+    right: 1px;
     min-width: 500px;
     border-radius: 50px;
     color: #FFFFFF;
-    z-index:2;
+    z-index:5;
 }
 
 .global-message.info{

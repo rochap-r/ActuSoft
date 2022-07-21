@@ -17,10 +17,10 @@
 										<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
 									</div>
 									<div class="con-info">
-										<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+										<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@actu-soft.com">info@actu-soft.com</a></p>
 									</div>
 									<div class="con-info">
-										<p><span><i class="icon-globe"></i></span> <a href="#">yourwebsite.com</a></p>
+										<p><span><i class="icon-globe"></i></span> <a href="#">actu-soft.com</a></p>
 									</div>
 								</div>
 							</div>

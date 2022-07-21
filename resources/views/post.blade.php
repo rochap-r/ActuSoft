@@ -52,12 +52,16 @@
 								@endforeach
 							</div>
 						</div>
+                        {{-- affichage du composant msg flash  --}}
+                        <x-blog.message :status=" 'success' "/>
 
 						<div class="row animate-box">
+
+
+
 							<div class="col-md-12">
 
-								{{-- affichage du composant msg flash  --}}
-								<x-blog.message :status=" 'success' "/>
+
 
 								<h2 class="colorlib-heading-2">Say something</h2>
 								{{-- decommenter pour obliger d'etre connecté avant de commenter --}}
@@ -68,7 +72,7 @@
 										<div class="row form-group">
 											<div class="col-md-12">
 												<!-- <label for="body">body</label> -->
-												<textarea name="body" id="body" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+												<textarea name="body" id="body" cols="20" rows="10" class="form-control" placeholder="Say something about us"></textarea>
 											</div>
 										</div>
 										<div class="form-group">

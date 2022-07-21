@@ -56,6 +56,22 @@
                         <div class="menu-title">Tags</div>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class='bx bxs-comment '></i>
+                        </div>
+                        <div class="menu-title">Commentaires</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.comments.index') }}"><i class="bx bx-comment-detail"></i>Tous les Commentaires</a>
+                        </li>
+                        <li> <a href="{{ route('admin.comments.create') }}"><i class="bx bx-comment-add"></i>Nouveau Commentaire</a>
+                        </li>
+
+                    </ul>
+                </li>
 
             </ul>
             <!--end navigation-->
