@@ -1,5 +1,22 @@
 
 @extends("admin_dashboard.layouts.app")
+@section('style')
+    <style>
+        .perrmissions{
+            background-color: white;
+            border: 0.5px solid black;
+            border-radius: 10px;
+            width: 90%;
+            color: black;
+            padding: 5px 10px;
+            text-align: justify;
+            display: inline-block;
+            font-size: 15px;
+            margin: 10px 10px;
+            cursor: pointer;
+        }
+    </style>
+@endsection
 
 @section("wrapper")
     <!--start page wrapper -->
@@ -7,7 +24,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Catégories</div>
+                <div class="breadcrumb-title pe-3">Roles</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -34,16 +51,16 @@
 
             <div class="card">
                 <div class="card-body p-4">
-                    <h5 class="card-title">Créez une nouvelle categorie</h5>
+                    <h5 class="card-title">Créez un Nouveau Role</h5>
                     <hr/>
-                    <form action="{{ route('admin.categories.store') }}" method="POST" >
+                    <form action="{{ route('admin.roles.store') }}" method="POST" >
                         @csrf
                         <div class="form-body mt-4">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="border border-3 p-4 rounded">
                                         <div class="mb-3">
-                                            <label for="inputProductTitle" class="form-label">Nom de la catégorie</label>
+                                            <label for="inputProductTitle" class="form-label">Nom du role</label>
                                             <input type="text" value="{{ old('name') }}" name="name" required class="form-control" id="inputProductTitle" placeholder="Tapez le titre de l'article">
                                             @error('name')
                                             <p class="text-danger">{{ $message }}</p>
@@ -51,14 +68,31 @@
 
                                         </div>
                                         <div class="mb-3">
-                                            <label for="inputProductTitle" class="form-label">Limace de la catégorie (Slug)</label>
-                                            <input type="text" name="slug" value="{{ old('slug') }}"  required class="form-control" id="inputProductTitle" placeholder="Tapez le slug de l'article">
-                                            @error('slug')
-                                            <p class="text-danger">{{ $message }}</p>
-                                            @enderror
+                                            <div class="row">
+                                                <label for="inputProductTitle" class="form-label text-uppercase lead">Les Permissions pour chaque role</label>
+                                                @php
+                                                    $the_count=count($permissions);
+                                                    $start=0;
+                                                @endphp
+                                                @for($j=1; $j<=3; $j++)
+                                                    @php
+                                                        $end=round($the_count * ($j / 3));
+                                                    @endphp
+                                                    <div class="col-md-4">
+                                                        @for($i =$start; $i < $end; $i++)
+                                                            <label for="per{{$i}}" class="perrmissions">
+                                                                <input type="checkbox" id="per{{$i}}" name="permissions[]" value="{{ $permissions[$i]->id }}"> {{ $permissions[$i]->name  }}
+                                                            </label>
+                                                        @endfor
+                                                    </div>
+                                                    @php
+                                                        $start=$end;
+                                                    @endphp
+                                                @endfor
+                                            </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary text-uppercase">Ajouter Nouvelle Catégorie</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Ajouter le Role</button>
                                     </div>
                                 </div>
                             </div><!--end row-->

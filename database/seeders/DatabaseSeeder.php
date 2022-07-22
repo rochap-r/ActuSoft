@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
@@ -44,6 +46,26 @@ class DatabaseSeeder extends Seeder
         /**generation des fausses données */
         \App\Models\Role::factory(1)->create();
         \App\Models\Role::factory(1)->create(['name'=>"admin"]);
+
+        //affiche toutes les url lors du lancement des migrations
+        //dd(Route::getRoutes());
+
+        $routes=Route::getRoutes();
+        $permissions_id=[];
+
+        // insertion de toutes les url d'admin dans la table permission
+        foreach ($routes as $route){
+            if (strpos($route->getName(),'admin')!==false)
+            {
+                $permission=Permission::create(['name'=>$route->getName()]);
+                $permissions_id[]=$permission->id;
+                //var_dump($route->getName());
+            }
+
+        }
+
+        Role::where('name','admin')->first()->permissions()->sync($permissions_id);
+
          $users=\App\Models\User::factory(10)->create();
          \App\Models\User::factory()->create([
              'name'=>'rodrigue',

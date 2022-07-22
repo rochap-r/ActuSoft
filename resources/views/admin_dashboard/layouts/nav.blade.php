@@ -59,7 +59,7 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class='bx bxs-comment '></i>
+                            <i class='bx bxs-comment-dots '></i>
                         </div>
                         <div class="menu-title">Commentaires</div>
                     </a>
@@ -73,6 +73,24 @@
                     </ul>
                 </li>
 
+                <hr>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class='bx bxs-key '></i>
+                        </div>
+                        <div class="menu-title">Roles</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.roles.index') }}"><i class="bx bx-arrow-to-right"></i>Tous les Roles</a>
+                        </li>
+                        <li> <a href="{{ route('admin.roles.create') }}"><i class="bx bx-arrow-to-right"></i>Nouveau Role</a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
             <!--end navigation-->
         </div>

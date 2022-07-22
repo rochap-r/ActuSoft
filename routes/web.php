@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminControllers\AdminCategoryController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
+use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\DashBoardController;
@@ -37,7 +38,7 @@ Route::get('/tags/{tag:name}', [TagController::class,'show'])->name('tag.show');
 require __DIR__.'/auth.php';
 
 // Admin DashBoard Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(function (){
+Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin','check_permissions'])->group(function (){
     Route::get('/',[DashBoardController::class,'index'])->name('index');
     Route::resource('posts',AdminPostsController::class);
     Route::resource('categories',AdminCategoryController::class);
@@ -45,5 +46,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(fu
     Route::post('upload_tinymce_image',[TinyMceController::class,'upload_tinymce_image'])->name('upload_tinymce_image');
     Route::resource('tags',AdminTagsController::class)->only(['index', 'show','destroy']);
     Route::resource('comments',AdminCommentsController::class)->except('show');
+
+    Route::resource('roles',AdminRolesController::class)->except('show');
 });
 
