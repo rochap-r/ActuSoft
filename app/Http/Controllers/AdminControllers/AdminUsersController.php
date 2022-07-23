@@ -108,6 +108,16 @@ class AdminUsersController extends Controller
     {
         if ($user->id===auth()->id())
             return redirect()->back()->with('error',"Vous ne pouvez pas supprimé l'Administrateur système!");
+
+        /**
+         * attachment des articles d'un user qui n'est pas admin qu'on veut supprimé
+         * à l'administrateur
+         */
+        User::whereHas('role',function($query){
+                $query->where('name','admin');
+        })->first()->posts()->saveMany($user->posts);
+
+
         $user->delete();
         return redirect()->route('admin.users.index')->with('success',"L'utilisateur a bien été supprimé!");
     }
