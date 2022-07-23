@@ -1,5 +1,4 @@
-
-	@extends("admin_dashboard.layouts.app")
+@extends("admin_dashboard.layouts.app")
 
 	@section("style")
 	<link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />

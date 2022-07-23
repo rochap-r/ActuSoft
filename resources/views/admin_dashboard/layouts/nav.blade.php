@@ -91,6 +91,23 @@
 
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class='bx bxs-user '></i>
+                        </div>
+                        <div class="menu-title">Utilisateurs</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.users.index') }}"><i class="bx bx-arrow-to-right"></i>Tous les utilisateurs</a>
+                        </li>
+                        <li> <a href="{{ route('admin.users.create') }}"><i class="bx bx-arrow-to-right"></i>Nouveau utilisateur</a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
             <!--end navigation-->
         </div>

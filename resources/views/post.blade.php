@@ -23,7 +23,7 @@
 									<div class="desc desc2">
 										<h3><a href="#">{{$post->title}}</a></h3>
 										<p>
-                                             <small><span class="icon-user2"></span>  <span class="text-primary">{{$post->author->name}}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <small><span class="icon-user2"></span>  <span class="text-primary">{{$post->author->name ?? 'Inconnu'}}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
                                              <small ><span class="icon-calendar"></span> {{$post->created_at->diffForHumans()}}</small>
 										</p>
 										{!! $post->body !!}

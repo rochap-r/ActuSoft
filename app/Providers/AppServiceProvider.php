@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        //definition globale de la langue du site
+        \App::setLocale('fr');
+
+        //definition framework css de pagination ici bootstrap
         Paginator::useBootstrap();
        /**
         * affichage des catégories dans l'onglet sur l'accueil
@@ -26,5 +30,4 @@ class AppServiceProvider extends ServiceProvider
         //dd($categories);
         View::share('navbar_categories',$categories);
     }
-
 }
