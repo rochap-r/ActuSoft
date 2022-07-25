@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminControllers\AdminCategoryController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
+use App\Http\Controllers\AdminControllers\AdminContactsController;
 use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
@@ -51,5 +52,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','check_permissions'])
     Route::resource('roles',AdminRolesController::class)->except('show');
     //administration des users
     Route::resource('users',AdminUsersController::class);
+    //mail contact
+    Route::get('contacts',[AdminContactsController::class,'index'])->name('contacts.index');
+    Route::delete('contacts/{contact}',[AdminContactsController::class,'destroy'])->name('contacts.destroy');
 });
 
