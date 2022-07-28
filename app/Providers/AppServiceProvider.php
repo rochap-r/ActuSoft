@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +33,25 @@ class AppServiceProvider extends ServiceProvider
         $categories=Category::withCount('posts')->orderBy('posts_count','DESC')->get();
         //dd($categories);
         View::share('navbar_categories',$categories);
+
+        //variable globale
+        $setting=Setting::find(1);
+        View::share('setting',$setting);
+
+        //total articles
+        $total_posts=Post::all()->count();
+        View::share('total_posts',$total_posts);
+
+        //total categories
+        $total_categories=Category::all()->count();
+        View::share('total_categories',$total_categories);
+
+        //total users
+        $total_users=User::all()->count();
+        View::share('total_users',$total_users);
+
+        //total users
+        $total_comments=Comment::all()->count();
+        View::share('total_comments',$total_comments);
     }
 }

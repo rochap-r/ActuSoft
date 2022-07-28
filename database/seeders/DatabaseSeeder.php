@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
+use App\Models\Setting;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Role;
@@ -92,5 +93,6 @@ class DatabaseSeeder extends Seeder
             $post->tags()->sync($tag_ids);
             $post->image()->save(Image::factory()->make());
          }
+         Setting::factory(1)->create();
     }
 }

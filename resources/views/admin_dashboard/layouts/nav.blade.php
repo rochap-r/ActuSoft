@@ -37,7 +37,7 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class='bx bxs-analyse '></i>
+                            <i class='bx bxs-dice-6 '></i>
                         </div>
                         <div class="menu-title">Catégories</div>
                     </a>
@@ -113,6 +113,18 @@
                     <a href="{{ route('admin.contacts.index') }}" >
                         <div class="parent-icon"><i class='bx bx-mail-send'></i></div>
                         <div class="menu-title">Contacts</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.setting.edit') }}" >
+                        <div class="parent-icon"><i class='bx bx-abacus'></i></div>
+                        <div class="menu-title">Parametre </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('home') }}" target="_blank">
+                        <div class="parent-icon"><i class='bx bx-link-external'></i></div>
+                        <div class="menu-title">Visitez le site </div>
                     </a>
                 </li>
             </ul>

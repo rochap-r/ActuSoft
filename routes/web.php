@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminControllers\AdminSettingController;
 use App\Http\Controllers\AdminControllers\AdminCategoryController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
 use App\Http\Controllers\AdminControllers\AdminContactsController;
@@ -55,5 +56,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','check_permissions'])
     //mail contact
     Route::get('contacts',[AdminContactsController::class,'index'])->name('contacts.index');
     Route::delete('contacts/{contact}',[AdminContactsController::class,'destroy'])->name('contacts.destroy');
+
+    Route::get('about',[AdminSettingController::class,'edit'])->name('setting.edit');
+    Route::post('about',[AdminSettingController::class,'update'])->name('setting.update');
 });
 
