@@ -75,9 +75,9 @@
                                     <td>{{ $post->created_at->diffForHumans() }}</td>
 
                                     <td>
-                                        <div class="badge rounded-pill @if($post->status==='publié') {{ 'text-info bg-light-info' }} @elseif($post->status==='brouillon') {{ 'text-warning bg-light-warning' }} @else {{ 'text-danger bg-light-danger' }} @endif  p-2 text-uppercase px-3">
+                                        <div class="badge rounded-pill @if($post->approved===1) {{ 'text-info bg-light-info' }} @elseif($post->approved===0) {{ 'text-warning bg-light-warning' }} @else {{ 'text-danger bg-light-danger' }} @endif  p-2 text-uppercase px-3">
                                             <i class='bx bxs-circle me-1'></i>
-                                            {{ $post->status }}
+                                            {{ $post->approved ? 'publié':'non publé' }}
                                         </div>
                                     </td>
 

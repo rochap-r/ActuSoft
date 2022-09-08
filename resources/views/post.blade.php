@@ -1,16 +1,18 @@
 @extends('main_layouts.main')
 
-		@section('title', 'Actu-Soft | '.$post->title)
+		@section('title', 'actu-soft.com | '.$post->title)
         @section('custom_css')
             <style>
                 .class-single .desc img{
                     width:100%;
                 }
+                .classes .classes-img {
+                    height: 400px;
+					border-radius: 10px;
+                }
             </style>
         @endsection
 		@section('content')
-
-
 		<div class="colorlib-classes">
 			<div class="container">
 				<div class="row">
@@ -20,9 +22,9 @@
 								<div class="classes class-single">
 									<div class="classes-img" style="background-image: url({{ $post->image ? asset('storage/'.$post->image->path.''): 'https://via.placeholder.com/600x400?text=actu-soft.com'}})">
 									</div>
-									<div class="desc desc2">
-										<h3><a href="#">{{$post->title}}</a></h3>
-										<p>
+									<div class="desc desc2 ">
+										<h3 class="text-justify"><a href="#">{{$post->title}}</a></h3>
+										<p class="text-justify">
                                              <small><span class="icon-user2"></span>  <span class="text-primary">{{$post->author->name }}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
                                              <small ><span class="icon-calendar"></span> {{$post->created_at->diffForHumans()}}</small>
 										</p>
@@ -63,7 +65,7 @@
 
 
 
-								<h2 class="colorlib-heading-2">Say something</h2>
+								<h2 class="colorlib-heading-2">Dîtes quelque chose</h2>
 								{{-- decommenter pour obliger d'etre connecté avant de commenter --}}
 								@auth
 									<form method="POST" action="{{route('post.add_comment',$post)}}">
@@ -72,7 +74,7 @@
 										<div class="row form-group">
 											<div class="col-md-12">
 												<!-- <label for="body">body</label> -->
-												<textarea name="body" id="body" cols="20" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+												<textarea name="body" id="body" cols="20" rows="10" class="form-control" placeholder="Dis quelque chose à ce sujet"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
@@ -82,9 +84,9 @@
 								@endauth
 								@guest
 									<p class="lead">
-										<a href="{{route('login')}}">Login</a>
-										Or <a href="{{route('register')}}">Register</a>
-										to write a comments
+										<a href="{{route('login')}}">Se Connecter</a>
+										Ou <a href="{{route('register')}}">S'inscrire</a>
+										pour Commenter
 									</p>
 								@endguest
 							</div>

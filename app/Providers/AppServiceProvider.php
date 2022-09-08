@@ -53,5 +53,8 @@ class AppServiceProvider extends ServiceProvider
         //total users
         $total_comments=Comment::all()->count();
         View::share('total_comments',$total_comments);
+
+        $rb_posts=Post::latest()->approved()->take(2)->get();
+        View::share('rb_posts',$rb_posts);
     }
 }

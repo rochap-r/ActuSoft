@@ -19,3 +19,99 @@
 .categories-col .block-21 .text{
     width:100%;
 }
+
+.qbstp-header-subscribe #name {
+    font-size: 14px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/*newsletters form*/
+.qbstp-header-subscribe{
+    display:flex;
+    flex-direction: column;
+    width: 60%;
+    margin:0 20%;
+    align-content: center!important;
+}
+/*mobile footer*/
+.block-footer {
+    width: 80%;
+    margin:0 10%;
+
+}
+/*newsletter error msg*/
+.suscribe_error{
+    background-color: #931d1d;
+    border-color: #931d1d;
+    text-align: center;
+    bottom: 380px;
+
+}/*newsletter error msg*/
+.suscribe_success{
+    background-color: #23b609;
+    border-color: #23b609;
+    text-align: center;
+    bottom: 380px;
+}
+
+@media screen and (max-width:540px ) and (min-width:361px){
+    /* affichage sur mobile des articles*/
+    .block-21{
+        flex-direction: column!important;
+    }
+    .blog-img-a{
+        height: 260px;
+        width: 100%!important;
+        border-radius: 10px;
+    }
+    .text{
+        text-align:center;
+        width: 100%!important;
+    }
+    .classes .classes-img {
+        height: 250px!important;
+    }
+    /*newsletters form*/
+    .qbstp-header-subscribe{
+        width: 90%;
+        margin:0 5%;
+    }
+
+}
+@media screen and (max-width:914px ) and (min-width:361px) {
+    /*footer sur mobile*/
+    .block-footer {
+        width: 800px;
+        margin: 0 20%;
+    }
+}
+
+@media screen and (max-width:360px ) {
+    /* affichage sur de petit mobile des articles*/
+    .blog-img-a {
+        height: 200px;
+        width: 100% !important;
+        border-radius: 10px;
+    }
+    .text{
+        text-align:center;
+        width: 100%!important;
+    }
+    .classes .classes-img {
+        height: 180px!important;
+        border-radius: 10px;
+    }
+    /*newsletters form*/
+    .qbstp-header-subscribe{
+        width: 100%;
+        margin:0 0;
+    }
+    /*footer sur mobile*/
+    .block-footer{
+        width: 80%;
+        margin: 0 10%;
+    }
+}

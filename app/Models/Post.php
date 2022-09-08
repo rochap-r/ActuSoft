@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable=['title',  'slug',  'excerpt', 'body', 'user_id', 'category_id'];
+    protected $fillable=['title',  'slug',  'excerpt', 'body', 'user_id', 'category_id','approved'];
 
     public function author()
     {
@@ -38,5 +38,10 @@ class Post extends Model
     public function image()
     {
         return $this->morphOne(Image::class,'imageable');
+    }
+    //scope function
+    public function scopeApproved($query)
+    {
+        return $query->where('approved',1);
     }
 }

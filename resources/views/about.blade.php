@@ -1,5 +1,5 @@
 @extends('main_layouts.main')
-@section('title','Actu-Soft  | Apropos ')
+@section('title','actu-soft.com | Apropos ')
 @section('content')
 
 

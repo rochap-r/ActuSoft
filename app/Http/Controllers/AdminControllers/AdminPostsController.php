@@ -5,7 +5,9 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminPostsController extends Controller
@@ -35,6 +37,12 @@ class AdminPostsController extends Controller
     public function store(Request $request)
     {
         $validated=$request->validate($this->rules);
+        $user=User::with('role')->find(auth()->id());
+        if(Role::find($user->role_id)->name==='admin'){
+            $validated['approved']=$request->approved !==null;
+        }else{
+            $validated['approved']=0;
+        }
         $validated['user_id']=auth()->id();
         //dd($validated);
         $post=Post::create($validated);
@@ -108,8 +116,12 @@ class AdminPostsController extends Controller
         $this->rules['thumbnail'] = 'nullable|file|mimes:jpg,png,webp;svg,jpeg|dimensions:max_width=800,max_height=400';
 
         $validated=$request->validate($this->rules);
-
-        //dd($validated);
+        $user=User::with('role')->find(auth()->id());
+        if(Role::find($user->role_id)->name==='admin'){
+            $validated['approved']=$request->approved !==null;
+        }else{
+            $validated['approved']=0;
+        }
         $post->update($validated);
         if ($request->has('thumbnail')){
             $thumbnail=$request->file('thumbnail');

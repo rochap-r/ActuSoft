@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminControllers\TinyMceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Models\Post;
@@ -38,6 +39,7 @@ Route::post('/contact', [ContactController::class,'store'])->name('contact.store
 Route::get('/categories/{category:slug}', [CategoryController::class,'show'])->name('category.show');
 Route::get('/categories', [CategoryController::class,'index'])->name('categories.index');
 Route::get('/tags/{tag:name}', [TagController::class,'show'])->name('tag.show');
+Route::post('/newsletter', [NewsletterController::class,'store'])->name('newsletter.store');
 require __DIR__.'/auth.php';
 
 // Admin DashBoard Routes

@@ -6,10 +6,11 @@
 	<title>@yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('logo/logo.png') }}" type="image/png" />
+    <link rel="icon" href="{{ asset('logo/icone.png') }}" type="image/png" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
+	<meta name="_token" content="{{ csrf_token() }}" />
 
   <!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -69,11 +70,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-2">
-							<div id="colorlib-logo"><a href="{{route('home')}}">Actu-Soft</a></div>
+							<div id="colorlib-logo"><a href="{{route('home')}}" style="color:#24a0ed;">actu<span style="color:#ff0af7 !important;">-</span>soft</a></div>
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul>
-								<li><a href="{{ route('home')}}">Home</a></li>
+								<li><a href="{{ route('home')}}">Accueil</a></li>
 								<li class="has-dropdown">
 									<a href="{{route('categories.index')}}">Categories</a>
                                     	<ul class="dropdown">
@@ -82,10 +83,10 @@
                                             @endforeach
                                     	</ul>
 								</li>
-								<li><a href="{{ route('about')}}">About</a></li>
+								<li><a href="{{ route('about')}}">A-propos</a></li>
 								<li><a href="{{ route('contact.create')}}">Contact</a></li>
 								@guest
-									<li class="btn-cta"><a href="{{ route('login')}}"><span>Sign in</span></a></li>
+									<li class="btn-cta"><a href="{{ route('login')}}"><span>Se Connecter</span></a></li>
 								@endguest
 								@auth
 									<li class="has-dropdown">
@@ -123,26 +124,31 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-						<h2>Subscribe Newsletter</h2>
-						<p>Subscribe our newsletter and get latest update</p>
+						<h2>Abonnez-vous à la newsletter</h2>
+						<p>Abonnez-vous à notre newsletter et recevez nos dernières mises à jour</p>
 					</div>
 				</div>
 				<div class="row animate-box">
 					<div class="col-md-6 col-md-offset-3">
 						<div class="row">
-							<div class="col-md-12">
-							<form class="form-inline qbstp-header-subscribe">
-								<div class="col-three-forth">
-									<div class="form-group">
-										<input type="text" class="form-control" id="email" placeholder="Enter your email">
+							<div class="col-md-12 ">
+								<form class="form-inline qbstp-header-subscribe">
+									<div class="col-three-forth">
+										<div class="form-group">
+											<input name="subscribe_name" type="text" required class="form-control" id="name" placeholder="Votre Nom">
+										</div>
 									</div>
-								</div>
-								<div class="col-one-third">
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary">Subscribe Now</button>
+									<div class="col-three-forth">
+										<div class="form-group">
+											<input name="subscribe_email" type="email" required class="form-control" id="email" placeholder="Votre Email">
+										</div>
 									</div>
-								</div>
-							</form>
+									<div class="col-one-third ">
+										<div class="form-group">
+											<button id="subscribe_btn" type="submit" class="btn btn-primary">Je m'abonne</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -151,75 +157,51 @@
 		</div>
 		<footer id="colorlib-footer">
 			<div class="container">
-				<div class="row row-pb-md">
+				<div class="row row-pb-md block-footer">
 					<div class="col-md-3 colorlib-widget">
-						<h4>Contact Info</h4>
+						<h4>Informations de contact</h4>
 						<ul class="colorlib-footer-links">
-							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
-							<li><a href="tel://1234567920"><i class="icon-phone"></i> + 1235 2355 98</a></li>
-							<li><a href="mailto:info@yoursite.com"><i class="icon-envelope"></i> info@yoursite.com</a></li>
-							<li><a href="http://luxehotel.com"><i class="icon-location4"></i> yourwebsite.com</a></li>
+							<li><a href="tel://243992522582"><i class="icon-phone"></i> +243 992522582</a></li>
+							<li><a href="mailto:info@actu-soft.com"><i class="icon-envelope"></i> info@actu-soft.com</a></li>
+							<li><a href="https://www.actu-soft.com"><i class="icon-location4"></i> actu-soft.com</a></li>
 						</ul>
 					</div>
-					<div class="col-md-2 colorlib-widget">
-						<h4>Programs</h4>
+					<div class="col-md-3 colorlib-widget">
+						<h4>Liens utiles</h4>
 						<p>
 							<ul class="colorlib-footer-links">
-								<li><a href="#"><i class="icon-check"></i> Diploma Degree</a></li>
-								<li><a href="#"><i class="icon-check"></i> BS Degree</a></li>
-								<li><a href="#"><i class="icon-check"></i> Beginner</a></li>
-								<li><a href="#"><i class="icon-check"></i> Intermediate</a></li>
-								<li><a href="#"><i class="icon-check"></i> Advance</a></li>
-								<li><a href="#"><i class="icon-check"></i> Difficulty</a></li>
-							</ul>
-						</p>
-					</div>
-					<div class="col-md-2 colorlib-widget">
-						<h4>Useful Links</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#"><i class="icon-check"></i> About Us</a></li>
-								<li><a href="#"><i class="icon-check"></i> Testimonials</a></li>
-								<li><a href="#"><i class="icon-check"></i> Courses</a></li>
-								<li><a href="#"><i class="icon-check"></i> Event</a></li>
-								<li><a href="#"><i class="icon-check"></i> News</a></li>
-								<li><a href="#"><i class="icon-check"></i> Contact</a></li>
-							</ul>
-						</p>
-					</div>
-
-					<div class="col-md-2 colorlib-widget">
-						<h4>Support</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#"><i class="icon-check"></i> Documentation</a></li>
-								<li><a href="#"><i class="icon-check"></i> Forums</a></li>
-								<li><a href="#"><i class="icon-check"></i> Help &amp; Support</a></li>
-								<li><a href="#"><i class="icon-check"></i> Scholarship</a></li>
-								<li><a href="#"><i class="icon-check"></i> Student Transport</a></li>
-								<li><a href="#"><i class="icon-check"></i> Release Status</a></li>
+								<li><a href="{{route('home')}}"><i class="icon-check"></i> Accueil</a></li>
+								<li><a href="{{ route('about') }}"><i class="icon-check"></i> Apropos de nous</a></li>
+								<li><a href="{{route('categories.index')}}"><i class="icon-check"></i> Categories</a></li>
+								<li><a href="{{ route('contact.create')}}"><i class="icon-check"></i> Contact</a></li>
 							</ul>
 						</p>
 					</div>
 
 					<div class="col-md-3 colorlib-widget">
-						<h4>Recent Post</h4>
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url({{ asset('blog_template/images/blog-1.jpg') }});">
-							</a>
-							<div class="desc">
-								<h2><a href="blog.html">Creating Mobile Apps</a></h2>
-								<p class="admin"><span>18 April 2018</span></p>
-							</div>
-						</div>
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url({{ asset('blog_template/images/blog-2.jpg') }});">
-							</a>
-							<div class="desc">
-								<h2><a href="blog.html">Creating Mobile Apps</a></h2>
-								<p class="admin"><span>18 April 2018</span></p>
-							</div>
-						</div>
+						<h4>Services</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="{{ route('about')}}"><i class="icon-check"></i> Création de site web</a></li>
+								<li><a href="{{ route('about')}}"><i class="icon-check"></i> Formations</a></li>
+								<li><a href="{{ route('about')}}"><i class="icon-check"></i> Coaching TFC & Mém</a></li>
+								<li><a href="{{ route('about')}}"><i class="icon-check"></i> Gestion de sites web</a></li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="col-md-3 colorlib-widget">
+						<h4>Articles récents</h4>
+                        @foreach ( $rb_posts as $recent_post )
+                            <div class="f-blog">
+                                <a href="{{route('post.show',$recent_post)}}" class="blog-img" style="background-image:url({{ $recent_post->image ? asset('storage/'.$recent_post->image->path.'') : 'https://via.placeholder.com/600x400?text=actu-soft.com'}}) ">
+                                </a>
+                                <div class="desc">
+                                    <h2><a href="{{route('post.show',$recent_post)}}">{{\Str::limit($recent_post->title,20)}}</a></h2>
+                                    <p class="admin"><span>{{$recent_post->created_at->diffForHumans()}}</span></p>
+                                </div>
+                            </div>
+                        @endforeach
 					</div>
 				</div>
 			</div>
@@ -228,10 +210,14 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<p>
-								<small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br>
-								<small class="block">Demo blog_template/images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>, <a href="http://pexels.com/" target="_blank">Pexels</a></small>
+								<small class="block">&copy;
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+									Tous les droits sont réservés | créé avec
+									<i class="icon-heart text-danger" aria-hidden="true"></i>
+									par
+									<a href="{{ route('about')}}" target="_blank" class="text-primary">actu-soft</a>
+								</small>
 							</p>
 						</div>
 					</div>
@@ -257,7 +243,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- Flexslider -->
 	<script src="{{ asset('blog_template/js/jquery.flexslider-min.js') }}"></script>
 	<!-- Owl carousel -->
-	<script src="{{ asset(' blog_template/js/owl.carousel.min.js ') }}"></script>
+	<script src="{{ asset('blog_template/js/owl.carousel.min.js') }}"></script>
 	<!-- Magnific Popup -->
 	<script src="{{ asset('blog_template/js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('blog_template/js/magnific-popup-options.js') }}"></script>
@@ -266,6 +252,59 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- Main -->
 	<script src="{{ asset('blog_template/js/main.js') }}"></script>
 	<script src="{{ asset('js/functions.js') }}"></script>
+	<script>
+		$(function(){
+			var code='';
+			function isEmail(email) {
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				return regex.test(email);
+			}
+			$(document).on("click","#subscribe_btn",(e)=>{
+				e.preventDefault();
+				let _this= $(e.target)
+				let name= _this.parents("form").find("input[name='subscribe_name']").val();
+				let email= _this.parents("form").find("input[name='subscribe_email']").val();
+				console.log(email)
+				if(!isEmail(email)){
+					$("body").append("<div class='global-message alert alert-danger suscribe_error'> Votre adresse email n'est pas valide!</div>")
+					code="error";
+				}else{
+					/*Ajax implementation*/
+					let formData= new FormData();
+					let _token=$("meta[name='_token']").attr("content");
+					formData.append('_token',_token)
+					formData.append('email',email)
+					formData.append('name',name)
+					$.ajax({
+						url:"{{ route('newsletter.store') }}",
+						type:"POST",
+						dataType:"JSON",
+						processData:false,
+						contentType:false,
+						data:formData,
+						success:(response)=>{
+							let message=response.message;
+							$("body").append("<div class='global-message alert alert-success suscribe_success'>"+message+"</div>")
+                            //code de message d'erreur ou de succes
+							code="success";
+
+						},
+                        statusCode: {
+                            500: ()=>{
+                                $("body").append("<div class='global-message alert alert-danger suscribe_error'>L'adresse email que vous avez fourni est invalide!</div>")
+                                //code de message d'erreur ou de succes
+                                code="error";
+                            }
+                        }
+					});
+				}
+				setTimeout(()=>{ $(".suscribe_"+code).fadeOut() },5000)
+				clearData($(_this).parents("form"),['subscribe_name','subscribe_email']);
+			});
+
+		});
+
+	</script>
 
 	@yield('custom_js')
 

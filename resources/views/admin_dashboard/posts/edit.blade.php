@@ -120,6 +120,14 @@
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
+
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" name="approved" class="form-check-input" id="flexSwitchCheckChecked" {{ $post->approved ? 'checked':''}}>
+                                                <label for="flexSwitchCheckChecked" class="form-check-label {{ $post->approved ? 'text-success':'text-danger' }}">{{ $post->approved ? 'Approuvé':'Non Approuvé' }}</label>
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3">
                                             <button onclick="event.preventDefault(); document.getElementById('post_form_{{ $post->id }}').submit()" class="btn btn-primary text-uppercase">Editer l'Article</button>&nbsp&nbsp&nbsp
                                             <button onclick="event.preventDefault(); document.getElementById('delete_form_{{ $post->id }}').submit()" class="btn btn-danger text-uppercase">supprrimer l'article</button>

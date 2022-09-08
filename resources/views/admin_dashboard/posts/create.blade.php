@@ -118,6 +118,12 @@
 									 	<p class="text-danger">{{ $message }}</p>
 									@enderror
 								  </div>
+                                  <div class="mb-3">
+                                      <div class="form-check form-switch">
+                                          <input type="checkbox" name="approved" class="form-check-input" id="flexSwitchCheckChecked">
+                                          <label for="flexSwitchCheckChecked" class="form-check-label text-primary">Approuver</label>
+                                      </div>
+                                  </div>
 								   <button onclick="event.preventDefault(); document.getElementById('post_form').submit()" class="btn btn-primary text-uppercase">Ajouter Nouvel Article</button>
 								 </div>
 							   </div>

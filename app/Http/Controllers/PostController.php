@@ -51,7 +51,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //dd($post->comments->author);
-        $recent_posts=Post::latest()->take(5)->get();
+        $recent_posts=Post::latest()->approved()->take(5)->get();
         $categories=Category::withCount('posts')->orderBy('posts_count','desc')->take(10)->get();
         $tags=Tag::latest()->take(15)->get();
             return view('post',[

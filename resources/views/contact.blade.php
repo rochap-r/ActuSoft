@@ -1,5 +1,5 @@
 @extends('main_layouts.main')
-@section('title', 'Actu-Soft  | Contact')
+@section('title', 'actu-soft.com | Contact')
 @section('content')
         <div class='global-message info d-none'></div>
 		<div class="colorlib-contact">
@@ -11,16 +11,16 @@
 							<div class="col-md-12">
 								<div class="contact-info-wrap-flex">
 									<div class="con-info">
-										<p><span><i class="icon-location-2"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+										<p><span><i class="icon-location-2"></i></span> Indéfinie présentement</p>
 									</div>
 									<div class="con-info">
-										<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+										<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+243 992522582</a></p>
 									</div>
 									<div class="con-info">
 										<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@actu-soft.com">info@actu-soft.com</a></p>
 									</div>
 									<div class="con-info">
-										<p><span><i class="icon-globe"></i></span> <a href="#">actu-soft.com</a></p>
+										<p><span><i class="icon-globe"></i></span> <a href="#">www.actu-soft.com</a></p>
 									</div>
 								</div>
 							</div>
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<input type="submit" value="Send Message" class="btn btn-primary send-message-btn">
+								<input type="submit" value="Envoyer le message" class="btn btn-primary send-message-btn">
 							</div>
 						</form>
 					</div>
