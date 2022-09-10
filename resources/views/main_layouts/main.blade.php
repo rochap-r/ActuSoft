@@ -166,12 +166,12 @@
 							<li><a href="https://www.actu-soft.com"><i class="icon-location4"></i> actu-soft.com</a></li>
 						</ul>
 					</div>
-					<div class="col-md-3 colorlib-widget">
+					<div class="col-md-2 colorlib-widget">
 						<h4>Liens utiles</h4>
 						<p>
 							<ul class="colorlib-footer-links">
 								<li><a href="{{route('home')}}"><i class="icon-check"></i> Accueil</a></li>
-								<li><a href="{{ route('about') }}"><i class="icon-check"></i> Apropos de nous</a></li>
+								<li><a href="{{ route('about') }}"><i class="icon-check"></i> Apropos</a></li>
 								<li><a href="{{route('categories.index')}}"><i class="icon-check"></i> Categories</a></li>
 								<li><a href="{{ route('contact.create')}}"><i class="icon-check"></i> Contact</a></li>
 							</ul>
@@ -190,7 +190,7 @@
 						</p>
 					</div>
 
-					<div class="col-md-3 colorlib-widget">
+					<div class="col-md-4 colorlib-widget">
 						<h4>Articles récents</h4>
                         @foreach ( $rb_posts as $recent_post )
                             <div class="f-blog">

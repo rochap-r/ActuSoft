@@ -56,7 +56,9 @@
     text-align: center;
     bottom: 380px;
 }
-
+#colorlib-footer .f-blog .blog-img {
+    height: 40px;
+}
 @media screen and (max-width:540px ) and (min-width:361px){
     /* affichage sur mobile des articles*/
     .block-21{
