@@ -5,8 +5,8 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
-	<link rel="icon" href="{{ asset('logo/icone.png') }}" type="image/png" />
+    <!--favicon-->
+    <link rel="icon" href="{{ asset('logo/icone.webp') }}" type="image/webp" />
 	<!--plugins-->
 	@yield("style")
 	<link href="{{ asset('admin_dashboard_assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
