@@ -65,7 +65,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $comment->user->name }}</td>
+                                    <td>{{ $comment->userComment->name }}</td>
                                     <td>{{ \Str::limit($comment->body,50) }}</td>
 
                                     <td>{{ $comment->created_at->diffForHumans() }}</td>

@@ -174,7 +174,6 @@
 							<li><a href="tel://243992522582"><i class="icon-phone"></i> +243 992522582</a></li>
 							<li><a href="mailto:contact@actu-soft.com"><i class="icon-envelope"></i> contact@actu-soft.com</a></li>
 							<li><a href="https://www.actu-soft.com" target="_blank"><i class="icon-location4"></i> actu-soft.com</a></li>
-							<li><a href="https://www.actu-soft.com" target="_blank"><i class="icon-location4"></i> actu-soft.com</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2 colorlib-widget">

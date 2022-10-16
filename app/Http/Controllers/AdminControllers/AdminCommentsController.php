@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\UserComment;
 use Illuminate\Http\Request;
 
 class AdminCommentsController extends Controller
@@ -31,7 +33,15 @@ class AdminCommentsController extends Controller
     public function store(Request $request)
     {
         $validated=$request->validate($this->rules);
-        $validated['user_id']=auth()->id();
+        $admin=User::find(auth()->id());
+        $user=UserComment::where('email',$admin->email)->first();
+
+        if($user==null){
+            $user=UserComment::create([ 'name'=>$admin->name,'email'=>$admin->email ]);
+            $validated['user_comment_id']=$user->id;
+        }else{
+            $validated['user_comment_id']=$user->id;
+        }
         Comment::create($validated);
         return redirect()->route('admin.comments.create')->with('success','Votre Commentaire a été créé avec success!');
     }
