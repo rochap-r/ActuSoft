@@ -5,8 +5,9 @@
     <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
     {{-- css pour les tags--}}
     <link href="{{ asset('admin_dashboard_assets/plugins/input-tags/css/tagsinput.css')}}" rel="stylesheet" />
-    <script src="https://cdn.tiny.cloud/1/s86rdw88nimupgtqnx7gmsk8b6yqfi9bok9bftuoyvnhxykf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-@endsection
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.5/tinymce.min.js" integrity="sha512-TXT0EzcpK/3KaFksZ59D/1A3orhVtDzhwgtYeSIGxM6ZgCW1+ak+2BqbJPps2JQlkvRApI37Xqbr8ligoIGjBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @endsection
 
 @section("wrapper")
     <!--start page wrapper -->
@@ -197,35 +198,7 @@
                     formData.append('_token',_token);
                     formData.append('file',blobinfo.blob(),blobinfo.filename());
                     xhr.send(formData);
-                },
-
-                file_picker_types: 'image',
-
-                file_picker_callback: function (cb, value, meta) {
-                    var input = document.createElement('input');
-                    input.setAttribute('type', 'file');
-                    input.setAttribute('accept', 'image/*');
-
-                    input.onchange = function () {
-                        var file = this.files[0];
-
-                        var reader = new FileReader();
-                        reader.onload = function () {
-
-                            var id = 'blobid' + (new Date()).getTime();
-                            var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                            var base64 = reader.result.split(',')[1];
-                            var blobInfo = blobCache.create(id, file, base64);
-                            blobCache.add(blobInfo);
-
-                            cb(blobInfo.blobUri(), { title: file.name });
-                        };
-                        reader.readAsDataURL(file);
-                    };
-
-                    input.click();
-                },
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                }
 
             });
 

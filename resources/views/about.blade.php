@@ -3,7 +3,7 @@
 @section('content')
 
 
-		<div id="colorlib-counter" class="colorlib-counters">
+		<div id="colorlib-counter" class="colorlib-counters" style="margin-left:15px !important;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">

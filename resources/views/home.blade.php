@@ -13,8 +13,8 @@
 									<div class="block-21 d-flex animate-box">
 										<a href="{{route('post.show',$post)}}" class="blog-img blog-img-a" style="background-image: url({{ $post->image ? asset('storage/'.$post->image->path.'') : 'https://via.placeholder.com/600x400?text=actu-soft.com'}})"></a>
 										<div class="text">
-											<h3 class="heading"><a href="{{route('post.show',$post)}}">{{$post->title}}</a></h3>
-											<p class="excerpt">{{$post->excerpt}}</p>
+											<h3 class="heading"><a href="{{route('post.show',$post)}}">{{ Str::limit( $post->title,125 )}}</a></h3>
+                                            <p class="excerpt">{{\Str::limit($post->excerpt,100)}}</p>
 											<div class="meta">
 												<div><a href="#" class="date"><span class="icon-calendar"></span> {{$post->created_at->diffForHumans()}}</a></div>
 												<div><a href="#"><span class="icon-user2"></span> {{$post->author->name}}</a></div>

@@ -13,7 +13,7 @@
 			max-width:100%;
 		}
 	</style>
-	<script src="https://cdn.tiny.cloud/1/s86rdw88nimupgtqnx7gmsk8b6yqfi9bok9bftuoyvnhxykf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.5/tinymce.min.js" integrity="sha512-TXT0EzcpK/3KaFksZ59D/1A3orhVtDzhwgtYeSIGxM6ZgCW1+ak+2BqbJPps2JQlkvRApI37Xqbr8ligoIGjBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	@endsection
 
 		@section("wrapper")
@@ -159,93 +159,44 @@
                 allowClear: Boolean($(this).data('allow-clear')),
             });
 
-            tinymce.init({
-                selector: '#post_content',
-                plugins:'advlist autolink link image charmap print preview hr anchor pagebraek indent code autolink table lists',
-                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | hr charmap table',
-                toolbar_mode: 'floating',
-                tinycomments_mode: 'embedded',
-                tinycomments_author: 'Author name',
-                height:'500',
-                image_title:true,
-                automatic_upload:true, //le navigateur ne se lance pas pour uploadez l'image
-
-                images_upload_handler: function(blobinfo,success,failure){
-                    let formData= new FormData();
-                    let _token= $('input[name="_token"]').val();
-                    let xhr=new XMLHttpRequest();
-                    xhr.open('post',"{{ route('admin.upload_tinymce_image') }}")
-                    xhr.onload=()=>{
-                        if(xhr.status !== 200)
-                        {
-                            failure("Http Error "+xhr.status);
-                            return
-                        }
-                        let json=JSON.parse(xhr.responseText)
-                        if(! json || typeof json.location!=='string'){
-                            failure("Invalid json: "+xhr.responseText);
-                            return
-                        }
-                        success(json.location)
+			tinymce.init({
+            selector: '#post_content',
+            plugins: 'advlist autolink lists link image media charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            height: '500',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr',
+            toolbar_mode: 'floating',
+            image_title: true,
+            automatic_uploads: true,
+            
+            images_upload_handler: function(blobinfo, success, failure)
+            {
+                let formData = new FormData();
+                let _token = $("input[name='_token']").val();
+                let xhr = new XMLHttpRequest();
+                xhr.open('post', "{{ route('admin.upload_tinymce_image') }}");
+                xhr.onload = () => {
+                    if( xhr.status !== 200 )
+                    {
+                        failure("Http Error: " + xhr.status);
+                        return
                     }
-                    formData.append('_token',_token);
-                    formData.append('file',blobinfo.blob(),blobinfo.filename());
-
-                    xhr.send(formData);
-                },
-
-                file_picker_types: 'image',
-
-                file_picker_callback: function (cb, value, meta) {
-                    var input = document.createElement('input');
-                    input.setAttribute('type', 'file');
-                    input.setAttribute('accept', 'image/*');
-
-                    input.onchange = function () {
-                        var file = this.files[0];
-
-                        var reader = new FileReader();
-                        reader.onload = function () {
-
-                            var id = 'blobid' + (new Date()).getTime();
-                            var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                            var base64 = reader.result.split(',')[1];
-                            var blobInfo = blobCache.create(id, file, base64);
-                            blobCache.add(blobInfo);
-
-                            cb(blobInfo.blobUri(), { title: file.name });
-                        };
-                        reader.readAsDataURL(file);
-                    };
-
-                    input.click();
-                },
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-
-            });
-
-            // tinymce.init(
-            //     {
-            //         selector:'#post_content',
-            // 		plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-            // 		toolbar: 'a11ycheck addcomment showcomments casechange checklist  export formatpainter code image link editimage pageembed permanentpen table tableofcontents',
-            //         //plugins:'advlist autolink links image charmap print preview hr anchor pagebraek',
-            //         toolbar_mode:'floating',
-            // 		height:'500',
-            // 		tinycomments_mode: 'embedded',
-            // 		tinycomments_author: 'Author name',
-            // 		//toolbar:'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr table',
-            // 		image_title: true,
-            // 		automatic_uploads: true,
-            // 		images_upload_handler: function(blobinfo,success,failure)
-            // 		{
-            // 			console.log(blobinfo.blob())
-            // 		}
-            //     }
-            // )
-
+                    let json = JSON.parse(xhr.responseText)
+                    if(! json || typeof json.location != 'string')
+                    {
+                        failure("Invalid Json: " + xhr.responseText);
+                        return
+                    }
+                    success( json.location )
+                }
+                formData.append('_token', _token);
+                formData.append('file', blobinfo.blob(), blobinfo.filename());
+                xhr.send( formData );
+            }
+        });			
             setTimeout(()=>{ $(".general-message").fadeOut(); },5000)
-        })
+        
+		})
 
 	</script>
 	@endsection

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -17,6 +18,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        /**
+         *  rentention des urls precedentes 
+         */
+        Redirect::setIntendedUrl(url()->previous());
         return view('auth.login');
     }
 

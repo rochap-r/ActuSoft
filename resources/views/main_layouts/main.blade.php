@@ -1,13 +1,23 @@
 <!doctype html>
 <html lang="fr">
 	<head>
+	<!--Start Google tag (gtag.js) -->
+	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CJQ83L42Q"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-7CJQ83L42Q');
+	</script>-->
+	<!--Start Google tag (gtag.js) -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>@yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('logo/icone.png') }}" type="image/png" />
-	<meta name="description" content="" />
+    <link rel="icon" href="{{ asset('logo/icone.webp') }}" type="image/webp" />
+        <meta name="description" content="Bienvenue sur actu-soft.com, une plateforme de partage et de formation sur l'actualité et la technologie software pour les passionnés du logiciel!" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="_token" content="{{ csrf_token() }}" />
@@ -69,7 +79,7 @@
 			<div class="top-menu">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-md-2 col-sm-3">
 							<div id="colorlib-logo"><a href="{{route('home')}}" style="color:#24a0ed;">actu<span style="color:#ff0af7 !important;">-</span>soft</a></div>
 						</div>
 						<div class="col-md-10 text-right menu-1">
@@ -119,9 +129,9 @@
 
 		@yield('content')
 
-		<div id="colorlib-subscribe" class="subs-img" style="background-image: url({{ asset('blog_template/images/actu-soft-ban.jpg') }});" data-stellar-background-ratio="0.5">
+		<div id="colorlib-subscribe" class="subs-img" style="background-image: url({{ asset('blog_template/images/actu-soft-ban.webp') }});" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
-			<div class="container">
+			<div class="container" id="newsletter">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
 						<h2>Abonnez-vous à la newsletter</h2>
@@ -162,8 +172,9 @@
 						<h4>Informations de contact</h4>
 						<ul class="colorlib-footer-links">
 							<li><a href="tel://243992522582"><i class="icon-phone"></i> +243 992522582</a></li>
-							<li><a href="mailto:info@actu-soft.com"><i class="icon-envelope"></i> info@actu-soft.com</a></li>
-							<li><a href="https://www.actu-soft.com"><i class="icon-location4"></i> actu-soft.com</a></li>
+							<li><a href="mailto:contact@actu-soft.com"><i class="icon-envelope"></i> contact@actu-soft.com</a></li>
+							<li><a href="https://www.actu-soft.com" target="_blank"><i class="icon-location4"></i> actu-soft.com</a></li>
+							<li><a href="https://www.actu-soft.com" target="_blank"><i class="icon-location4"></i> actu-soft.com</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2 colorlib-widget">
@@ -172,7 +183,7 @@
 							<ul class="colorlib-footer-links">
 								<li><a href="{{route('home')}}"><i class="icon-check"></i> Accueil</a></li>
 								<li><a href="{{ route('about') }}"><i class="icon-check"></i> Apropos</a></li>
-								<li><a href="{{route('categories.index')}}"><i class="icon-check"></i> Categories</a></li>
+								<li><a href="{{route('home')}}/#newsletter"><i class="icon-check"></i> Categories</a></li>
 								<li><a href="{{ route('contact.create')}}"><i class="icon-check"></i> Contact</a></li>
 							</ul>
 						</p>

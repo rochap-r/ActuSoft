@@ -17,7 +17,7 @@ class AdminPostsController extends Controller
                 'slug'=>'required|max:250',
                 'excerpt'=>'required|max:300',
                 'category_id'=>'required|numeric',
-                'thumbnail'=>'required|file|mimes:jpg,png,webp;svg,jpeg|dimensions:max_width=800,max_height=400',
+                'thumbnail'=>'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=800,max_height=400',
                 'body'=>'required',
         ];
     public function index()
@@ -113,7 +113,7 @@ class AdminPostsController extends Controller
     public function update(Request $request, Post $post)
     {
         //la maj de la photo n'est obligatoire
-        $this->rules['thumbnail'] = 'nullable|file|mimes:jpg,png,webp;svg,jpeg|dimensions:max_width=800,max_height=400';
+        $this->rules['thumbnail'] = 'nullable|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=800,max_height=400';
 
         $validated=$request->validate($this->rules);
         $user=User::with('role')->find(auth()->id());

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\UserComment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -36,14 +37,29 @@ class PostController extends Controller
     }
 
     public function addComment(Post $post){
+        
+        $attributes=request()->validate([ 
+            'name' => 'required', 'string',
+            'email' =>'required', 'email', 'unique:user_comments',
+            'body'=> ' required|min:3|max:350', 
+        ]);
+        $email=request()->input(['email']);
+        
+        $user=UserComment::where('email',[$email])->first();
 
-        $attributes=request()->validate([ 'body'=>' required|min:10|max:350' ]);
-        $attributes['user_id']=auth()->id();
+        if($user==null){
+            $name=request()->name;
+            $user=UserComment::create([ 'name'=>$name,'email'=>$email  ]);
+            $attributes['user_comment_id']=$user->id;
+        }else{
+            $attributes['user_comment_id']=$user->id;
+        }
         $comment=$post->comments()->create($attributes);
 
+        $user=UserComment::where('email',[$email])->first();
        // return back(); redirige vers la meme page
        //#comment_ id sur post section commentaire affiche le dernier commentaire correspondant à cet id
-       return redirect('/post/'. $post->slug . '#comment_' . $comment->id)->with('success',' Le Commentaire a bien été ajouté ');
+       return redirect('/post/'. $post->slug . '#comment_' . $comment->id)->with(['success'=>' Le Commentaire a bien été ajouté ','user'=>$user]);
     }
 
 

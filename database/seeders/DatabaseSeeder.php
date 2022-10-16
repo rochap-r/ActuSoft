@@ -8,7 +8,10 @@ use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Image;
+use App\Models\User;
+use App\Models\UserComment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -33,20 +36,20 @@ class DatabaseSeeder extends Seeder
         //Schema::disableForeignKeyConstraints();   desactive la contrainte de la clé etrangere
 
         Schema::disableForeignKeyConstraints();
-        \App\Models\User::truncate();
-        \App\Models\Role::truncate();
-
-        \App\Models\Category::truncate();
-        \App\Models\Post::truncate();
-        \App\Models\Comment::truncate();
-        \App\Models\Tag::truncate();
-        \App\Models\Image::truncate();
-         Schema::enableForeignKeyConstraints();
+        User::truncate();
+        Role::truncate();
+        UserComment::truncate();
+        Category::truncate();
+        Post::truncate();
+        Comment::truncate();
+        Tag::truncate();
+        Image::truncate();
+        Schema::enableForeignKeyConstraints();
 
 
         /**generation des fausses données */
-        \App\Models\Role::factory(1)->create();
-        \App\Models\Role::factory(1)->create(['name'=>"admin"]);
+        Role::factory(1)->create();
+        Role::factory(1)->create(['name'=>"admin"]);
 
         //affiche toutes les url lors du lancement des migrations
         //dd(Route::getRoutes());
@@ -67,8 +70,8 @@ class DatabaseSeeder extends Seeder
 
         Role::where('name','admin')->first()->permissions()->sync($permissions_id);
 
-         $users=\App\Models\User::factory(10)->create();
-         \App\Models\User::factory()->create([
+        $users=User::factory(10)->create();
+        User::factory()->create([
              'name'=>'rodrigue',
              'email'=>'rodriguechot@gmail.com',
              'role_id'=>2
@@ -78,11 +81,17 @@ class DatabaseSeeder extends Seeder
              $user->image()->save(Image::factory()->make());
          }
 
-         \App\Models\Category::factory(10)->create();
-         \App\Models\Category::factory()->create(['name'=>'sans-categorie']);
-         $posts=\App\Models\Post::factory(60)->create();
-         \App\Models\Comment::factory(100)->create();
-         \App\Models\Tag::factory(10)->create();
+        Category::factory(10)->create();
+        Category::factory()->create(['name'=>'sans-categorie']);
+
+        $userComments=UserComment::factory(10)->create();
+        foreach($userComments as $user){
+            $user->image()->save(Image::factory()->make());
+        }
+
+        $posts=Post::factory(60)->create();
+        Comment::factory(100)->create();
+        Tag::factory(10)->create();
 
          foreach($posts as $post){
             $tag_ids=[];
@@ -93,6 +102,6 @@ class DatabaseSeeder extends Seeder
             $post->tags()->sync($tag_ids);
             $post->image()->save(Image::factory()->make());
          }
-         Setting::factory(1)->create();
+        Setting::factory(1)->create();
     }
 }

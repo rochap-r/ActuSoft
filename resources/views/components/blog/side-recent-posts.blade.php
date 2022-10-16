@@ -7,8 +7,8 @@
             </a>
             <div class="desc">
                 <p class="admin"><span>{{$recent_post->created_at->diffForHumans()}}</span></p>
-                <h2><a href="{{route('post.show',$recent_post)}}">{{\Str::limit($recent_post->title,20)}}</a></h2>
-                <p>{{\Str::limit($recent_post->excerpt,25)}}</p>
+                <h2><a href="{{route('post.show',$recent_post)}}">{{\Str::limit($recent_post->title,15)}}</a></h2>
+                <p>{{\Str::limit($recent_post->excerpt,20)}}</p>
             </div>
         </div>
     @endforeach

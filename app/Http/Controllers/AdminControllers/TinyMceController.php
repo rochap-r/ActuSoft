@@ -14,6 +14,6 @@ class TinyMceController extends Controller
         // $path=$file->storeAs('tinymce_uploads',$filename,'public');
         //il va generer le nom lui meme
         $path=$file->store('tinymce_uploads','public');
-        return response()->json(['location'=>"/store/$path"]);
+        return response()->json(['location'=>"/storage/$path"]);
     }
 }
