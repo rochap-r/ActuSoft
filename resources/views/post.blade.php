@@ -85,11 +85,11 @@
 											<input type="hidden" name="name" value="{{session('user')->name}}">
 											<input type="hidden"  name="email" value="{{session('user')->email}}">
 											@else
-											<div class="col-md-12">
+											<div class="col-md-12" style="margin-bottom: 10px">
 												<input type="text" name="name" class="form-control" placeholder="Saisissez votre nom ici...">
 											</div>
 
-											<div class="col-md-12">
+											<div class="col-md-12" style="margin-bottom: 10px">
 												<input type="email" name="email" class="form-control" placeholder="Tapez votre email ici...">
 											</div>
 											@endif
