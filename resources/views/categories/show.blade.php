@@ -10,7 +10,7 @@
                     @forelse ($posts as $post)
                         {{-- php artisan storage:link  cmd pour configurer le rep storage pour les fichiers comme rep par def--}}
                         <div class="block-21 d-flex animate-box">
-                            <a href="{{route('post.show',$post)}}" class="blog-img" style="background-image: url({{asset('storage/'.$post->image->path.'')}})"></a>
+                            <a href="{{route('post.show',$post)}}" class="blog-img blog-img-a" style="background-image: url({{asset('storage/'.$post->image->path.'')}})"></a>
                             <div class="text">
                                 <h3 class="heading"><a href="{{route('post.show',$post)}}">{{$post->title}}</a></h3>
                                 <p class="excerpt">{{$post->excerpt}}</p>

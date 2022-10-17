@@ -24,7 +24,7 @@ class TagController extends Controller
             'recent_posts'=>$recent_posts,
             'tags'=>$tags,
             'categories'=>$categories,
-            'posts'=>$tag->posts()->paginate(7)
+            'posts'=>$tag->posts()->withCount('comments')->paginate(7)
         ]);
     }
 }

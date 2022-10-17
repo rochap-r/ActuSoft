@@ -2,22 +2,26 @@
 <html lang="fr">
 	<head>
 	<!--Start Google tag (gtag.js) -->
-	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CJQ83L42Q"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CJQ83L42Q"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
 		gtag('config', 'G-7CJQ83L42Q');
-	</script>-->
+	</script>
 	<!--Start Google tag (gtag.js) -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>@yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('logo/icone.webp') }}" type="image/webp" />
-        <meta name="description" content="Bienvenue sur actu-soft.com, une plateforme de partage et de formation sur l'actualité et la technologie software pour les passionnés du logiciel!" />
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo//apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('logo//favicon-32x32.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo//favicon-16x16.png') }}">
+	<link rel="manifest" href="{{ asset('logo//site.webmanifest') }}">
+
+    <meta name="description" content="Bienvenue sur actu-soft.com, une plateforme de partage et de formation sur l'actualité et la technologie software pour les passionnés du logiciel!" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="_token" content="{{ csrf_token() }}" />

@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\UserComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class PostController extends Controller
 {
@@ -58,8 +59,12 @@ class PostController extends Controller
 
         $user=UserComment::where('email',[$email])->first();
        // return back(); redirige vers la meme page
-       //#comment_ id sur post section commentaire affiche le dernier commentaire correspondant à cet id
-       return redirect('/post/'. $post->slug . '#comment_' . $comment->id)->with(['success'=>' Le Commentaire a bien été ajouté ','user'=>$user]);
+       //#comment_ id sur post section commentaire affiche le dernier commentaire correspondant à cet 
+        Cookie::queue('User',$user,120);
+        Cookie::queue('user_name',$user->name,120);
+        Cookie::queue('user_email',$user->email,120);
+        
+       return redirect('/post/'. $post->slug . '#comment_' . $comment->id)->with('succes',' Le Commentaire a bien été ajouté ');
     }
 
 

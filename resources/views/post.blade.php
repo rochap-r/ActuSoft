@@ -26,7 +26,7 @@
 										<h1><a href="#">{{$post->title}}</a></h1>
 										<p class="text-justify">
                                              <small><span class="icon-user2"></span>  <span class="text-primary">{{$post->author->name }}</span></small>&nbsp;&nbsp;&nbsp;&nbsp;
-                                             <small ><span class="icon-calendar"></span> {{$post->created_at->diffForHumans()}}</small>
+                                             <small ><span class="icon-calendar"></span>  {{$post->created_at->diffForHumans()}}</small>
 										</p>
 										{!! $post->body !!}
 									</div>
@@ -64,7 +64,7 @@
 							<div class="col-md-12">
 
 
-								@if (!session('user'))
+								@if (!Cookie::get('User'))
 								<h2 class="colorlib-heading-2">Dîtes quelque chose</h2>
 								@endif
 								{{-- decommenter pour obliger d'etre connecté avant de commenter --}}
@@ -73,17 +73,17 @@
 										@csrf
 
 										<div class="row form-group">
-											@if (session('user'))
+											@if (Cookie::get('User'))
 											<div class="col-md-12">
 												<h4
-												class=" alert alert-info text-uppercase"  
+												class=" alert alert-info text-uppercase text-center"  
 												style="font-weight: 700!important;color:white;background-color: #4586ff!important">
-												Commentez encore Mr {{session('user')->name}}!
+												Commentez encore cher(e) ami(e) {{ Cookie::get('user_name') }}!
 											</h4>
 											</div>
 
-											<input type="hidden" name="name" value="{{session('user')->name}}">
-											<input type="hidden"  name="email" value="{{session('user')->email}}">
+											<input type="hidden" name="name" value="{{ Cookie::get('user_name') }}">
+											<input type="hidden"  name="email" value="{{ Cookie::get('user')  }}">
 											@else
 											<div class="col-md-12" style="margin-bottom: 10px">
 												<input type="text" name="name" class="form-control" placeholder="Saisissez votre nom ici...">
