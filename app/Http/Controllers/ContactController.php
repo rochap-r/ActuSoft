@@ -41,15 +41,16 @@ class ContactController extends Controller
             $attributes=$validated->validated();
             Contact::create($attributes);
 
-            Mail::to(env('ADMIN_EMAIL'))->send(new ContactMail(
+            if(Mail::to(env('ADMIN_EMAIL'))->send(new ContactMail(
                 $attributes['first_name'],
                 $attributes['last_name'],
                 $attributes['email'],
                 $attributes['subject'],
                 $attributes['message']
-            ));
-            if (Mail::failures()) {
-                return response()->Fail('Sorry! Please try again latter');
+            ))){
+                //
+            }else{
+                return response()->Fail('Désolé! Rééssayez plus tard');
             }
             $data['success']=1;
             $data['message']='Merci, nous avons reçu votre message avec succès, nous vous répondrons le plus vite possible.';

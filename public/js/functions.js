@@ -3,4 +3,3 @@ let clearData=(parent,elements)=>{
         $(parent).find("[name='"+element+"']").val('')
     })
 }
-//CATEGORY POST PAGE video a travailler
