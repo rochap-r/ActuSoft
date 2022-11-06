@@ -1,6 +1,6 @@
 @extends('main_layouts.main')
 
-		@section('title', 'actu-soft.com | '.$post->title)
+		@section('title', $post->title)
         @section('custom_css')
             <style>
                 .class-single .desc img{
