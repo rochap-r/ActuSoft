@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\AdminControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Role;
-use App\Models\Tag;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPostsController extends Controller
 {
@@ -48,7 +49,11 @@ class AdminPostsController extends Controller
         $post=Post::create($validated);
         if ($request->has('thumbnail')){
             $thumbnail=$request->file('thumbnail');
-            $path=$thumbnail->store('images','public');
+            $folder = 'images';
+            if (!Storage::disk('public')->exists($folder)) {
+                Storage::disk('public')->makeDirectory($folder);
+            }
+            $path=$thumbnail->store($folder,'public');
             $fileName=$thumbnail->getClientOriginalName();
             $extension=$thumbnail->getClientOriginalExtension();
             //création de l'image de l'article
@@ -125,7 +130,18 @@ class AdminPostsController extends Controller
         $post->update($validated);
         if ($request->has('thumbnail')){
             $thumbnail=$request->file('thumbnail');
-            $path=$thumbnail->store('images','public');
+            $folder = 'images';
+            if (!Storage::disk('public')->exists($folder)) {
+                Storage::disk('public')->makeDirectory($folder);
+            }
+            
+            $field = $post->image->path;
+            $deletePath = $field;
+            if ($deletePath !== null && Storage::disk('public')->exists($deletePath)) {
+                Storage::disk('public')->delete($deletePath);
+            }
+            $path=$thumbnail->store($folder,'public');
+
             $fileName=$thumbnail->getClientOriginalName();
             $extension=$thumbnail->getClientOriginalExtension();
             //création de l'image de l'article
